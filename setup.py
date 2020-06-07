@@ -1,7 +1,13 @@
+import os
+import shutil
+import sys
+
 from setuptools import setup, find_packages
 
+package_name = 'example-pynq-notebook'
+
 setup(
-    name='example-pynq-notebook',
+    name=package_name,
     version='0.1',
     description='Just an example notebook',
     author='PYNQ Hero',
@@ -12,3 +18,18 @@ setup(
         "pynq"
     ],
 )
+
+
+def install_notebook(notebook_name):
+    board_notebooks_dir = os.environ['PYNQ_JUPYTER_NOTEBOOKS']
+
+    notebook_path = os.path.join(board_notebooks_dir, notebook_name)
+    print(f'* Installing notebook: {notebook_path}')
+    if os.path.isdir(notebook_path):
+        print('-- Found existing notebook folder, removing')
+        shutil.rmtree(notebook_path)
+    shutil.copytree("example/", notebook_path)
+
+
+if 'install' in sys.argv:
+    install_notebook(package_name)
