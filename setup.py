@@ -8,7 +8,7 @@ package_name = 'example-pynq-notebook'
 
 setup(
     name=package_name,
-    version='0.1',
+    version='0.2',
     description='Just an example notebook',
     author='PYNQ Hero',
     url='https://github.com/riklaunim/pynq-example-notebook',
